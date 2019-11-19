@@ -48,7 +48,7 @@ import sys
 
 
 def mimic_dict(filename):
-    mimic_dict = {} # create an empty dict
+    word_dict = {} # create an empty dict
     alice = open(filename, 'r') # assign value of open file for read-only, to alice
     text = alice.read() # text is open file and read text in file
   #  alice.close() # close opened file that is alice
@@ -56,22 +56,31 @@ def mimic_dict(filename):
     prev_word = ''
     for word in words: #map words
         if prev_word not in mimic_dict: # if previous word is not in mimic dict 
-            mimic_dict[prev_word] = [word] #then previous word in mimic is word thats been mapped
+            word_dict[prev_word] = [word] #then previous word in mimic is word thats been mapped
         else:
-            mimic_dict[prev_word].append(word) #else if it is in mimicdict then add word to prev word
+            word_dict[prev_word].append(word) #else if it is in mimicdict then add word to prev word
         prev_word = word #so it goes word by word
-    return mimic_dict
+    return word_dict
 
     raise NotImplementedError("Get to Work!")
 
 
 def print_mimic(mimic_dict, word):
+    """Given mimic dict and start word, prints 200 random words:
+        - Start with '' (empty string) as a seed word.
+        - Print the seed word
+        - Lookup this word in your mimic_dict and get it's value list
+        - Randomly select a new seed word from this word list
+        - Repeat this process 200 times
+    """
+    # +++your code here+++
+
     for i in range(200):
-        print word,
+        print(word)
     next_word = mimic_dict.get(word)          # Returns None if not found
     if not next_word:
       next_word = mimic_dict['']  # Fallback to '' if not found
-    word = random.choice(next_word)
+    word = random.choice(nexts)
     raise NotImplementedError("Get to Work!")
 
 
@@ -81,7 +90,7 @@ def main():
         print 'usage: python mimic.py file-to-read'
         sys.exit(1)
 
-    d = mimic_dict(sys.argv[1])
+    d = mimic_dict(sys.argv[0])
     print_mimic(d, '')
 
 

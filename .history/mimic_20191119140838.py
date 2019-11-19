@@ -51,27 +51,29 @@ def mimic_dict(filename):
     mimic_dict = {} # create an empty dict
     alice = open(filename, 'r') # assign value of open file for read-only, to alice
     text = alice.read() # text is open file and read text in file
-  #  alice.close() # close opened file that is alice
+    alice.close() # close opened file that is alice
     words = text.split() # split words in alice.txt
-    prev_word = ''
-    for word in words: #map words
-        if prev_word not in mimic_dict: # if previous word is not in mimic dict 
-            mimic_dict[prev_word] = [word] #then previous word in mimic is word thats been mapped
+    prev = ''
+    for word in words:
+        if prev not in mimic_dict:
+            mimic_dict[prev] = [word]
         else:
-            mimic_dict[prev_word].append(word) #else if it is in mimicdict then add word to prev word
-        prev_word = word #so it goes word by word
+            mimic_dict[prev].append(word)
+        prev = word
     return mimic_dict
 
     raise NotImplementedError("Get to Work!")
 
 
 def print_mimic(mimic_dict, word):
-    for i in range(200):
-        print word,
-    next_word = mimic_dict.get(word)          # Returns None if not found
-    if not next_word:
-      next_word = mimic_dict['']  # Fallback to '' if not found
-    word = random.choice(next_word)
+    """Given mimic dict and start word, prints 200 random words:
+        - Start with '' (empty string) as a seed word.
+        - Print the seed word
+        - Lookup this word in your mimic_dict and get it's value list
+        - Randomly select a new seed word from this word list
+        - Repeat this process 200 times
+    """
+    # +++your code here+++
     raise NotImplementedError("Get to Work!")
 
 
@@ -79,9 +81,9 @@ def print_mimic(mimic_dict, word):
 def main():
     if len(sys.argv) != 2:
         print 'usage: python mimic.py file-to-read'
-        sys.exit(1)
+        # sys.exit(1)
 
-    d = mimic_dict(sys.argv[1])
+        d = mimic_dict(sys.argv[0])
     print_mimic(d, '')
 
 
