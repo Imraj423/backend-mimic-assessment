@@ -68,10 +68,10 @@ def mimic_dict(filename):
 def print_mimic(mimic_dict, word):
     for i in range(200):
         print(word)
-        next_word = mimic_dict.get(word)          # Returns None if not found
-        if not next_word:
-            next_word = mimic_dict['']  # Fallback to '' if not found
-        word = random.choice(next_word)
+    next_word = mimic_dict.get(word)          # Returns None if not found
+    if not next_word:
+      next_word = mimic_dict['']  # Fallback to '' if not found
+    word = random.choice(next_word)
     #raise NotImplementedError("Get to Work!")
 
 
